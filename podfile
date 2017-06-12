@@ -1,0 +1,7 @@
+target 'ExtractVideos’ do
+pod 'AFNetworking', '~> 3.0'
+pod 'SDWebImage',   '~> 3.7'
+pod 'Masonry'
+pod 'CRToast', '~> 0.0.7'
+pod 'MBProgressHUD','~> 1.0.0'
+end
