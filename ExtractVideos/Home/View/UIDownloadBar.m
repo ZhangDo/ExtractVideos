@@ -21,11 +21,11 @@ appendIfExist,
 //fileUrlPath,
 possibleFilename;
 
-- (void) forceStop {
+- (void)forceStop {
 	operationBreaked = YES;
 }
 
-- (void) forceContinue {
+- (void)forceContinue {
 	operationBreaked = NO;
 	
 	NSLog(@"%f",bytesReceived);
@@ -48,6 +48,7 @@ possibleFilename;
 		receivedData = [[NSMutableData alloc] initWithLength:0];
 		self.progress = 0.0;
 		self.backgroundColor = [UIColor clearColor];
+        self.progressTintColor = [UIColor blackColor];
 		DownloadRequest = [[NSURLRequest alloc] initWithURL:fileURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:timeout];
 		DownloadConnection = [[NSURLConnection alloc] initWithRequest:DownloadRequest delegate:self startImmediately:YES];
 				
@@ -73,13 +74,12 @@ possibleFilename;
 			self.progress = ((bytesReceived/(float)expectedBytes)*100)/100;
 			percentComplete = self.progress*100;
 		}
-			//NSLog(@" Data receiving... Percent complete: %f", percentComplete);
-		
-		[barDelegate downloadBarUpdated:self];
+        if (self.delegate && [self.delegate respondsToSelector:@selector(downloadBarUpdated:)]) {
+            [self.delegate downloadBarUpdated:self];
+        }
 	
 	} else {
 		[connection cancel];
-		NSLog(@" STOP !!!!  Receiving data was stoped");
 	}
 		
 }
@@ -89,10 +89,7 @@ possibleFilename;
 	operationFailed = YES;
 }
 
-//- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-//	expectedBytes = [response expectedContentLength];
-//	NSLog(@"DID RECEIVE RESPONSE");
-//}
+
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
 	
@@ -128,7 +125,6 @@ possibleFilename;
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
 	[self.delegate downloadBar:self didFinishWithData:self.receivedData suggestedFilename:localFilename];
 	operationFinished = YES;
-	NSLog(@"Connection did finish loading...");
 }
 
 

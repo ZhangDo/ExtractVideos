@@ -25,6 +25,7 @@
         titleLabel.textAlignment = NSTextAlignmentCenter;
         titleLabel.font = [UIFont systemFontOfSize:FONTSIZE_26];
         titleLabel.textColor = COLOR_134;
+        titleLabel.text = @"youtube、微博、秒拍、快手、小咖秀、美拍等。";
         titleLabel.numberOfLines = 0;
         [self addSubview:titleLabel];
         [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -40,8 +41,8 @@
         titleViewImageView.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:titleViewImageView];
         [titleViewImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.center.equalTo(self);
-            make.bottom.equalTo(titleLabel.mas_top).offset(-40);
+            make.centerX.equalTo(self);
+            make.bottom.equalTo(titleLabel.mas_top).offset(-20);
             make.size.mas_equalTo(CGSizeMake(30, 30));
         }];
 

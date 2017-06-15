@@ -22,6 +22,8 @@
 #import "UIViewController+QXCToast.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "AppDelegate.h"
+#import "DownLoadView.h"
+#import "SJYouTubeIDParser.h"
 
 @interface HomeViewController () <UIWebViewDelegate,UIDownloadBarDelegate>
 {
@@ -48,12 +50,10 @@
     [super viewDidLoad];
     getURL = @"";
     extractor = [[PSYouTubeExtractor alloc] init];
-//    [self creatWebView];
     [self creatNUllView];
     [self creatTitleView];
     [self creatBarButton];
     [self creatDownloadBtn];
-//    [self creatProgressView];
 }
 
 #pragma mark --- 创建NULLView
@@ -63,7 +63,6 @@
     [self.nullView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.equalTo(self.view);
     }];
-    
 }
 #pragma mark --- 创建titleView
 - (void)creatTitleView {
@@ -82,8 +81,6 @@
     self.linkTextField.keyboardType = UIKeyboardTypeURL;
     
     self.navigationItem.titleView = self.linkTextField;
-
-    
 }
 
 - (void)creatBarButton {
@@ -100,7 +97,6 @@
 #pragma mark --- 创建webView
 - (void)creatWebView {
    
-
     self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAV_HEIGHT)];
     self.webView.backgroundColor = [UIColor whiteColor];
     self.webView.allowsInlineMediaPlayback = NO;
@@ -134,8 +130,6 @@
     self.progressView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 60)];
     self.progressView.backgroundColor = [UIColor whiteColor];
     [kAppWindow addSubview:self.progressView];
-    
-    
 }
 
 - (void)serachVideo {
@@ -187,20 +181,9 @@
 - (void)refresh {
     [self.webView reload];
 }
-
-
 //页面开始加载时调用
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     [_progressLayer startLoad];
-
-
-
-}
-// 当内容开始返回时调用
-- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {
-    
-
-
 }
 // 页面加载完成之后调用
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
@@ -275,123 +258,26 @@
 //    getTitle = [components componentsJoinedByString:@" "];
     
     if ([getURL length] >0) {
-        
-        [UIView animateWithDuration:0.3 animations:^{
-            self.progressView.frame = CGRectMake(0, SCREEN_HEIGHT - 60, SCREEN_WIDTH, 60);
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        SJYouTubeIDParser *youtubeParser = [SJYouTubeIDParser defaultParser];
+        youtubeParser.APIKey = @"AIzaSyCTu9h7PfHd7LI0Wy7Ep4VY4tM40fWOxb4";
+        [youtubeParser getVideoInfoFromURL:self.linkTextField.text completionHandler:^(NSString *videoID, NSString *videoTitle, NSURL *thumbnailURL, NSString *videoDescription, NSString *viewCount, long long likeCount, long long dislikeCount, NSDate *uploaded, NSString *uploader, NSError *error) {
+            [MBProgressHUD hideHUDForView:self.view animated:NO];
+            DownLoadView *downLoadView = [[DownLoadView alloc] initVideoTitle:videoTitle videoDescription:videoDescription thumbnailImageURL:thumbnailURL videoURLstr:getURL];
+            [downLoadView show];
         }];
-        
-        bar = [[UIDownloadBar alloc] initWithURL:[NSURL URLWithString:getURL]
-                                progressBarFrame:CGRectMake(40, 30, SCREEN_WIDTH - 80, 11.0)
-                                         timeout:15
-                                        delegate:self];
-        
-        [bar setProgressViewStyle:UIProgressViewStyleBar];
-        
-        [self.progressView addSubview:bar];
-        
         
     } else {
         UIAlertAction *alertaction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
         }];
-        
         UIAlertController *aleartVC = [UIAlertController alertControllerWithTitle:@"未获取到视频地址" message:@"可能原因：未点击播放视频" preferredStyle:UIAlertControllerStyleAlert];
         [aleartVC addAction:alertaction];
         [self.navigationController presentViewController:aleartVC animated:YES completion:nil];
     
     }
 
-    
-    
-
 }
-
-
-- (void)downloadBar:(UIDownloadBar *)downloadBar didFinishWithData:(NSData *)fileData suggestedFilename:(NSString *)filename {
-    
-    
-    NSString *filePath = [NSString stringWithFormat:@"%@/Documents/%@.mp4", NSHomeDirectory(),@"hah"];
-    [fileData writeToFile:filePath atomically:YES];
-    
-    
-    NSLog(@"filePath === %@",filePath);
-    
-    
-    
-    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-    
-    [library writeVideoAtPathToSavedPhotosAlbum:[NSURL fileURLWithPath:filePath]
-                                completionBlock:^(NSURL *assetURL, NSError *error) {
-                                    
-                                    if (error) {
-                                        
-                                        NSLog(@"Save video fail:%@",error);
-                                        
-                                    } else {
-                                        
-                                        NSLog(@"Save video succeed.");
-                                        [self showToastMessage:@"成功保存到相册😜"];
-
-                                        
-                                        [UIView animateWithDuration:0.3 animations:^{
-                                            self.progressView.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 60);
-                                        }];
-                                        
-                                        
-                                    }
-                                }];
-    
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    [fileManager createFileAtPath:[NSString stringWithFormat:@"%@.mp4", [[paths objectAtIndex:0] stringByAppendingPathComponent:@"hahah"]] contents:fileData attributes:nil];
-    
-    NSString *imagePath = [NSString stringWithFormat:@"%@.png", [[paths objectAtIndex:0] stringByAppendingPathComponent:@"hahah"]];
-    
-    AVAsset *asset = [[AVURLAsset alloc] initWithURL:[NSURL fileURLWithPath:[NSString stringWithFormat:@"%@.mp4", [[paths objectAtIndex:0] stringByAppendingPathComponent:@"hahah"]]] options:nil];
-    
-    AVAssetImageGenerator *imageGenerator = [[AVAssetImageGenerator alloc] initWithAsset:asset];
-    
-    Float64 durationSeconds = CMTimeGetSeconds(asset.duration);
-    
-    CMTime midpoint = CMTimeMakeWithSeconds(durationSeconds / 2.0, 600);
-    CMTime actualTime;
-    
-    CGImageRef preImage = [imageGenerator copyCGImageAtTime:midpoint actualTime:&actualTime error:NULL];
-    
-    if (preImage != NULL) {
-        CGRect rect = CGRectMake(0.0, 0.0, CGImageGetWidth(preImage) * 0.5, CGImageGetHeight(preImage) * 0.5);
-        
-        UIImage *image = [UIImage imageWithCGImage:preImage];
-        
-        UIGraphicsBeginImageContext(rect.size);
-        
-        [image drawInRect:rect];
-        
-        NSData *data = UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext());
-        
-        [fileManager createFileAtPath:imagePath contents:data attributes:nil];
-        
-        UIGraphicsEndImageContext();
-    }
-    
-    CGImageRelease(preImage);
-//    videoTitle = nil;
-    
-    [downloadBar removeFromSuperview];
-    bar = nil;
-    
-//    [downloadButton setEnabled:YES];
-}
-
-- (void)downloadBar:(UIDownloadBar *)downloadBar didFailWithError:(NSError *)error {
-    
-    
-    [downloadBar removeFromSuperview];
-    
-    bar = nil;
-}
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

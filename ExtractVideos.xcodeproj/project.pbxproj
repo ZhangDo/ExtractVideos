@@ -22,6 +22,7 @@
 		F4639D451EE1423400F8A49F /* NSTimer+addition.m in Sources */ = {isa = PBXBuildFile; fileRef = F4639D421EE1423400F8A49F /* NSTimer+addition.m */; };
 		F4639D461EE1423400F8A49F /* WYWebProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F4639D441EE1423400F8A49F /* WYWebProgressLayer.m */; };
 		F4639D541EE54E1300F8A49F /* UIDownloadBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F4639D531EE54E1300F8A49F /* UIDownloadBar.m */; };
+		F46C64571EEEB5C400F721FE /* DownLoadView.m in Sources */ = {isa = PBXBuildFile; fileRef = F46C64561EEEB5C400F721FE /* DownLoadView.m */; };
 		F49E5ED11EE6871D00090094 /* icon_22x29.png in Resources */ = {isa = PBXBuildFile; fileRef = F49E5ECD1EE6871D00090094 /* icon_22x29.png */; };
 		F49E5ED21EE6871D00090094 /* icon_44x58.png in Resources */ = {isa = PBXBuildFile; fileRef = F49E5ECE1EE6871D00090094 /* icon_44x58.png */; };
 		F49E5ED31EE6871D00090094 /* icon_64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = F49E5ECF1EE6871D00090094 /* icon_64x64.png */; };
@@ -30,6 +31,8 @@
 		F49E5EDA1EE6D70A00090094 /* QXCToastView.m in Sources */ = {isa = PBXBuildFile; fileRef = F49E5ED91EE6D70A00090094 /* QXCToastView.m */; };
 		F49E5EDD1EE79EC300090094 /* DownloadRules.m in Sources */ = {isa = PBXBuildFile; fileRef = F49E5EDC1EE79EC300090094 /* DownloadRules.m */; };
 		F49E5EE01EE7E17600090094 /* PSYouTubeExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = F49E5EDF1EE7E17600090094 /* PSYouTubeExtractor.m */; };
+		F4F88B991EF12B8200EC0C10 /* SJYouTubeIDParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F88B981EF12B8200EC0C10 /* SJYouTubeIDParser.m */; };
+		F4F88B9B1EF1485500EC0C10 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4F88B9A1EF1485500EC0C10 /* MobileCoreServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +85,8 @@
 		F4639D441EE1423400F8A49F /* WYWebProgressLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYWebProgressLayer.m; sourceTree = "<group>"; };
 		F4639D521EE54E1300F8A49F /* UIDownloadBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDownloadBar.h; sourceTree = "<group>"; };
 		F4639D531EE54E1300F8A49F /* UIDownloadBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDownloadBar.m; sourceTree = "<group>"; };
+		F46C64551EEEB5C400F721FE /* DownLoadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownLoadView.h; sourceTree = "<group>"; };
+		F46C64561EEEB5C400F721FE /* DownLoadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownLoadView.m; sourceTree = "<group>"; };
 		F49E5ECD1EE6871D00090094 /* icon_22x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_22x29.png; sourceTree = "<group>"; };
 		F49E5ECE1EE6871D00090094 /* icon_44x58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_44x58.png; sourceTree = "<group>"; };
 		F49E5ECF1EE6871D00090094 /* icon_64x64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_64x64.png; sourceTree = "<group>"; };
@@ -94,6 +99,9 @@
 		F49E5EDC1EE79EC300090094 /* DownloadRules.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadRules.m; sourceTree = "<group>"; };
 		F49E5EDE1EE7E17600090094 /* PSYouTubeExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSYouTubeExtractor.h; sourceTree = "<group>"; };
 		F49E5EDF1EE7E17600090094 /* PSYouTubeExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSYouTubeExtractor.m; sourceTree = "<group>"; };
+		F4F88B971EF12B8200EC0C10 /* SJYouTubeIDParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJYouTubeIDParser.h; sourceTree = "<group>"; };
+		F4F88B981EF12B8200EC0C10 /* SJYouTubeIDParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJYouTubeIDParser.m; sourceTree = "<group>"; };
+		F4F88B9A1EF1485500EC0C10 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4F88B9B1EF1485500EC0C10 /* MobileCoreServices.framework in Frameworks */,
 				8D12E1793A8FF35C45C86933 /* libPods-ExtractVideos.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -134,6 +143,7 @@
 		D30CB2FD805A892FD9C76C2E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F4F88B9A1EF1485500EC0C10 /* MobileCoreServices.framework */,
 				3C85BA58C4D1659A89B32263 /* libPods-ExtractVideos.a */,
 			);
 			name = Frameworks;
@@ -224,6 +234,8 @@
 				F49E5EDC1EE79EC300090094 /* DownloadRules.m */,
 				F49E5EDE1EE7E17600090094 /* PSYouTubeExtractor.h */,
 				F49E5EDF1EE7E17600090094 /* PSYouTubeExtractor.m */,
+				F4F88B971EF12B8200EC0C10 /* SJYouTubeIDParser.h */,
+				F4F88B981EF12B8200EC0C10 /* SJYouTubeIDParser.m */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -253,6 +265,8 @@
 				F4639D3B1EE111F500F8A49F /* HomeNullView.m */,
 				F4639D521EE54E1300F8A49F /* UIDownloadBar.h */,
 				F4639D531EE54E1300F8A49F /* UIDownloadBar.m */,
+				F46C64551EEEB5C400F721FE /* DownLoadView.h */,
+				F46C64561EEEB5C400F721FE /* DownLoadView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -463,10 +477,12 @@
 				F4639D331EE1113C00F8A49F /* DeviceUtility.m in Sources */,
 				F49E5EDA1EE6D70A00090094 /* QXCToastView.m in Sources */,
 				F4639CFE1EE110E800F8A49F /* main.m in Sources */,
+				F4F88B991EF12B8200EC0C10 /* SJYouTubeIDParser.m in Sources */,
 				F4639D3F1EE13AFF00F8A49F /* CommonUtility.m in Sources */,
 				F4639D391EE111D200F8A49F /* HomeViewController.m in Sources */,
 				F49E5EE01EE7E17600090094 /* PSYouTubeExtractor.m in Sources */,
 				F49E5ED71EE6D69000090094 /* UIViewController+QXCToast.m in Sources */,
+				F46C64571EEEB5C400F721FE /* DownLoadView.m in Sources */,
 				F4639D541EE54E1300F8A49F /* UIDownloadBar.m in Sources */,
 				F4639D3C1EE111F500F8A49F /* HomeNullView.m in Sources */,
 				F49E5EDD1EE79EC300090094 /* DownloadRules.m in Sources */,
