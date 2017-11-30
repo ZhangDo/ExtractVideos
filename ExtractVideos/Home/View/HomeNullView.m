@@ -25,7 +25,7 @@
         titleLabel.textAlignment = NSTextAlignmentCenter;
         titleLabel.font = [UIFont systemFontOfSize:FONTSIZE_26];
         titleLabel.textColor = COLOR_134;
-        titleLabel.text = @"youtube、微博、秒拍、快手、小咖秀、美拍等。";
+        titleLabel.text = @"youtube及其它大众视频网站。如微博秒拍、美拍等。";
         titleLabel.numberOfLines = 0;
         [self addSubview:titleLabel];
         [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
